@@ -1,0 +1,137 @@
+version: 2
+
+models:
+
+  - name: stg_crm_customers
+    description: "Cleaned synthetic CRM customer records."
+
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: stg_identity_links
+    description: "Cleaned simulated links between CRM customers and GA4 visitors."
+
+    columns:
+      - name: user_pseudo_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: is_simulated
+        data_tests:
+          - not_null
+
+  - name: int_customer_identity_map
+    description: "Customer identity map connecting synthetic CRM customers to GA4 visitor IDs."
+
+    columns:
+      - name: identity_map_key
+        data_tests:
+          - not_null
+          - unique
+
+      - name: user_pseudo_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_crm_customers')
+                field: customer_id
+      - name: is_simulated
+        data_tests:
+          - not_null
+  - name: dim_customer_360
+    description: "One consolidated profile per synthetic CRM customer, enriched with GA4 activity."
+
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_crm_customers')
+                field: customer_id
+
+      - name: identity_mapping_is_simulated
+        data_tests:
+          - not_null
+  - name: int_orders
+    description: "Deduplicated GA4 purchase orders using transaction, visitor, date, and session identifiers."
+
+    columns:
+      - name: transaction_id
+        data_tests:
+          - not_null
+
+      - name: user_pseudo_id
+        data_tests:
+          - not_null
+
+      - name: event_date
+        data_tests:
+          - not_null
+
+      - name: ga_session_id
+        data_tests:
+          - not_null
+
+      - name: order_timestamp
+        data_tests:
+          - not_null
+
+      - name: order_revenue_usd
+        data_tests:
+          - not_null
+
+      - name: purchase_event_count
+        data_tests:
+          - not_null
+  - name: int_unverified_purchase_events
+    description: "Purchase events with missing or invalid transaction IDs, retained separately from verified orders."
+
+    columns:
+      - name: user_pseudo_id
+        data_tests:
+          - not_null
+
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: event_date
+        data_tests:
+          - not_null
+
+      - name: ga_session_id
+        data_tests:
+          - not_null
+
+      - name: event_timestamp
+        data_tests:
+          - not_null
+
+      - name: invalid_id_reason
+        data_tests:
+          - not_null
+
+      - name: invalid_id_reason
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - null_transaction_id
+                  - blank_transaction_id
+                  - not_set_transaction_id

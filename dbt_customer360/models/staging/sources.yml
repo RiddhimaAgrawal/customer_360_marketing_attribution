@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: synthetic_crm
+    database: customer-360-analytics-513416
+    schema: customer_360_analytics
+
+    tables:
+      - name: crm_customers
+      - name: identity_links

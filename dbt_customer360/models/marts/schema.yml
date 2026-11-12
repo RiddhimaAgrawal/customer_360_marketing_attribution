@@ -1,0 +1,75 @@
+
+version: 2
+
+models:
+  - name: int_marketing_touchpoints
+    description: "Session-level marketing touchpoints derived from GA4 event parameters."
+    columns:
+      - name: touchpoint_id
+        tests:
+          - not_null
+          - unique
+      - name: user_pseudo_id
+        tests:
+          - not_null
+      - name: ga_session_id
+        tests:
+          - not_null
+
+  - name: fct_order_attribution
+    description: "Order revenue allocated across historical marketing touchpoints."
+    columns:
+      - name: order_key
+        tests:
+          - not_null
+      - name: order_revenue_usd
+        tests:
+          - not_null
+      - name: first_touch_revenue
+        tests:
+          - not_null
+      - name: last_touch_revenue
+        tests:
+          - not_null
+      - name: linear_attributed_revenue
+        tests:
+          - not_null
+      - name: time_decay_attributed_revenue
+        tests:
+          - not_null
+
+  - name: fct_campaign_performance
+    description: "Campaign-level attributed revenue and illustrative spend performance."
+    columns:
+      - name: source
+        tests:
+          - not_null
+      - name: medium
+        tests:
+          - not_null
+      - name: campaign
+        tests:
+          - not_null
+      - name: attributed_orders
+        tests:
+          - not_null
+      - name: linear_attributed_revenue_usd
+        tests:
+          - not_null
+
+seeds:
+  - name: campaign_spend
+    description: "Illustrative simulated marketing campaign spend; not actual advertising costs."
+    columns:
+      - name: source
+        tests:
+          - not_null
+      - name: medium
+        tests:
+          - not_null
+      - name: campaign
+        tests:
+          - not_null
+      - name: spend_usd
+        tests:
+          - not_null

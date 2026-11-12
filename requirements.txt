@@ -1,0 +1,21 @@
+# BigQuery connectivity
+google-cloud-bigquery[pandas]
+db-dtypes
+
+# Data analysis
+pandas
+numpy
+scikit-learn
+
+# dbt and BigQuery
+dbt-bigquery
+
+# Environment configuration
+python-dotenv
+
+# Notebooks
+jupyterlab
+ipykernel
+
+# Testing
+pytest
