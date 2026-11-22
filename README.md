@@ -6,13 +6,18 @@ An end-to-end analytics engineering capstone that transforms Google Analytics 4 
 
 Explore the complete Customer 360 – Marketing Attribution project through the interactive Tableau Public workbook.
 
-**[View Interactive Dashboard on Tableau Public](https://public.tableau.com/app/profile/riddhima.agrawal/viz/Customer360MarketingAttributionAnalytics/MarketingAttribution)**
+## Tableau Dashboards
 
-### Dashboards Included
+**[View all three interactive dashboards on Tableau Public](https://public.tableau.com/app/profile/riddhima.agrawal/viz/Customer360MarketingAttributionAnalytics)**
 
-1. **Executive Overview** – Revenue KPIs, monthly revenue trends, customer tier distribution, and RFM segmentation.
-2. **Marketing & Attribution** – Channel attribution, source attribution, and comparison of attribution models.
-3. **Campaign & Customer Insights** – Campaign revenue, campaign ROAS, and historical customer value analysis.
+The project includes three dashboards:
+
+1. **Executive Overview:** Revenue trends, customer distribution and RFM segmentation.
+2. **Marketing & Attribution:** Channel performance and comparison of First-Touch, Last-Touch, Linear and Time-Decay attribution.
+3. **Campaign & Customer Insights:** Campaign revenue, illustrative ROAS/ROI and historical customer value.
+
+The dashboards use the project's exported analytical datasets. Campaign spend is simulated, and campaign efficiency metrics are illustrative rather than actual business returns.
+
 
 ### Key Project Highlights
 
